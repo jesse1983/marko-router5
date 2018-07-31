@@ -13,12 +13,18 @@
     "type": "git",
     "url": "https://github.com/jesse1983/marko-router5"
   },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm build"
+    }
+  },
   "devDependencies": {
     "babel-core": "^6.21.0",
     "babel-loader": "^7.1.5",
     "babel-preset-es2015": "^6.24.1",
     "babel-preset-stage-1": "^6.24.1",
     "css-loader": "^1.0.0",
+    "husky": "^1.0.0-rc.13",
     "lodash": "^4.17.10",
     "marko": "^4.12.2",
     "marko-loader": "^1.3.3",
@@ -31,3 +37,5 @@
   },
   "dependencies": {}
 }
+
+
