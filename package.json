@@ -9,6 +9,10 @@
   },
   "author": "",
   "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jesse1983/marko-router5"
+  },
   "devDependencies": {
     "babel-core": "^6.21.0",
     "babel-loader": "^7.1.5",
