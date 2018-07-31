@@ -6,7 +6,7 @@
   "scripts": {
     "build": "webpack --mode production --config webpack.prod.js --optimize-minimize",
     "dev": "webpack-dev-server --watch",
-    "prepush": "npm build"
+    "prepush": "npm run build"
   },
   "author": "",
   "license": "ISC",
