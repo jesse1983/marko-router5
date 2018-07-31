@@ -5,18 +5,14 @@
   "main": "./dist/index.min.js",
   "scripts": {
     "build": "webpack --mode production --config webpack.prod.js --optimize-minimize",
-    "dev": "webpack-dev-server --watch"
+    "dev": "webpack-dev-server --watch",
+    "prepush": "npm build"
   },
   "author": "",
   "license": "ISC",
   "repository": {
     "type": "git",
     "url": "https://github.com/jesse1983/marko-router5"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "npm build"
-    }
   },
   "devDependencies": {
     "babel-core": "^6.21.0",
