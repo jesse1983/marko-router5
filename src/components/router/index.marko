@@ -1,0 +1,5 @@
+div class=['router5-placeholder', { active: !!state.toState }, (state.toState ? state.toState.name : null)]
+  if(state.renderBody)
+    include(state.renderBody) params=state.toState.params
+
+

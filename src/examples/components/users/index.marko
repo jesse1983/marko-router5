@@ -1,0 +1,10 @@
+import users from './users.json';
+
+h1 -- Users
+ul
+  li for(user in users)
+    route-link href="/users/${user.id}" -- ${ user.name }
+hr
+if(input.renderBody)
+  include(input.renderBody)
+

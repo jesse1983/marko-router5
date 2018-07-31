@@ -1,0 +1,30 @@
+import { router } from '../../../index';
+
+class {
+  onCreate(input) {
+    this.state = {
+      q: (input.params ? input.params.q : ''),
+    }
+  }
+  fill(ev) {
+    this.setState({ q: ev.target.value });
+  }
+  submit(ev) {
+    ev.preventDefault();
+    router().navigate('search', { q: this.state.q })
+  }
+}
+h1 -- What are you looking for?
+div
+  form on-submit('submit')
+    fieldset.uk-fieldset
+      br
+      label.uk-grid.uk-grid-collapse
+        div
+          input.uk-input type="text" on-input('fill') value=state.q name="q"
+        div
+          button.uk-button.uk-button-default type="submit" -- Search
+  if(input.params && input.params.q)
+    p
+      -- You are looking for
+      strong --   ${ input.params.q }

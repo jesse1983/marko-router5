@@ -1,0 +1,15 @@
+class {
+  onCreate(input) {
+    this.state = { count: 0 };
+  }
+  clickme() {
+    this.setState({ count: this.state.count += 1 });
+  }
+}
+div
+  h1 -- Settings example
+  div
+    button.uk-button.uk-button-default on-click('clickme') -- Click me ${ state.count }
+  hr
+  if(input.renderBody)
+    include(input.renderBody)
