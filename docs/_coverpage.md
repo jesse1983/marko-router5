@@ -4,5 +4,5 @@
 * **Router5** based ([https://github.com/router5/router5](https://github.com/router5/router5))
 * Support for wildcard path syntax, placeholder and nested routes
 
-[GitHub](https://github.com/docsifyjs/docsify/)
+[GitHub](https://github.com/jesse1983/marko-router5)
 [Get Started](#getting-started)
