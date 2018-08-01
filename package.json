@@ -1,6 +1,6 @@
 {
   "name": "marko-router5",
-  "version": "1.0.2c",
+  "version": "1.0.2d",
   "description": "Flexible and powerful routing for MarkoJS",
   "main": "./dist/index.js",
   "scripts": {

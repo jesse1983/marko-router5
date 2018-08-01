@@ -1,5 +1,5 @@
-const route5 = require('router5');
-const browserPlugin = require('router5/plugins/browser');
+const { createRouter } = require('router5');
+const browserPlugin = require('router5/plugins/browser').default;
 const { cloneDeep } = require('lodash');
 
 class Route5Component {
@@ -17,7 +17,7 @@ class Route5Component {
     this.notReady = true;
   }
   onMount() {
-    this.router = route5(this.routes, this.options);
+    this.router = createRouter(this.routes, this.options);
     this.router
       .useMiddleware(router => (toState, fromState, done) => this.beforeChangeRoute(toState, fromState, done))
       .usePlugin(browserPlugin({
