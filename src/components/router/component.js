@@ -7,6 +7,7 @@ class Route5Component {
     this.routes = input.routes || [];
     this.options = Object.assign({
       queryParamsMode: 'loose',
+      defaultRoute: '/',
     }, (input.options || {}));
     this.state = {
       toState: null,
