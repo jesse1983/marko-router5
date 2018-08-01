@@ -1,4 +1,4 @@
-import Router from './components/router/index.marko';
+const Router = require('./components/router/index.marko');
 
 const router = () => process.browser ? window.router : null;
 
@@ -8,4 +8,4 @@ const isActive = (p) => {
   if (href === '/' && path !== '/') return false;
   return path.startsWith(href);
 };
-export { Router, router, isActive };
+module.exports = { Router, router, isActive };

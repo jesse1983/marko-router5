@@ -1,6 +1,6 @@
-import route5 from 'router5';
-import browserPlugin from 'router5/plugins/browser';
-import { cloneDeep } from 'lodash';
+const route5 = require('router5');
+const browserPlugin = require('router5/plugins/browser');
+const { cloneDeep } = require('lodash');
 
 class Route5Component {
   onCreate(input) {
