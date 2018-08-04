@@ -1,7 +1,7 @@
-import users from '../../users.json';
+import users from '../../users';
 
 $ const user = users.find((u) => input.params && input.params.id && u.id.toString() === input.params.id);
 if(user)
   h1 -- ${ user.name }
 else
-  p -- Not found
+  p -- Not found ${ JSON.stringify(input) }

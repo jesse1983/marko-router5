@@ -1,7 +1,8 @@
 module.exports = class {
   onMount() {
-    window.router.useMiddleware(route => (toState, fromState, done) => this.middleActive(toState, fromState, done));
-    this.middleActive(window.router.getState());
+    if (window.router) {
+      window.router.useMiddleware(route => (toState, fromState, done) => this.middleActive(toState, fromState, done));
+    }
   }
 
   navigate(ev) {
@@ -24,8 +25,11 @@ module.exports = class {
   }
 
   isActive(p, href) {
-    const path = p.split('?')[0];
-    if (href === '/' && path !== '/') return false;
-    return path.startsWith(href);
+    if (p && href) {
+      const path = p.split('?')[0];
+      if (href === '/' && path !== '/') return false;
+      return path.startsWith(href);
+    }
+    return false;
   }
 }

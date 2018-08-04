@@ -2,7 +2,7 @@ const path = require('path');
 
 module.exports = {
   mode: 'development',
-  entry: path.join(__dirname, 'src', 'bundle'),
+  entry: path.join(__dirname, 'examples', 'bundle'),
   output: {
     filename: 'index.js',
     path: path.resolve(__dirname, 'dist')
@@ -30,7 +30,7 @@ module.exports = {
   },
   devtool: 'inline-source-map',
   devServer: {
-    contentBase: path.join(__dirname, 'src'),
+    contentBase: path.join(__dirname, 'examples'),
     publicPath: path.join('/dist'),
     disableHostCheck: true,
     before: (app) => {
@@ -38,7 +38,7 @@ module.exports = {
         if (req.path === '/dist/index.js') {
           next();
         } else {
-          res.sendFile(path.join(__dirname + '/src/index.html'));
+          res.sendFile(path.join(__dirname + '/examples/index.html'));
         }
       });
     }

@@ -1,0 +1,33 @@
+import users from './users';
+
+class {
+  onCreate() {
+    this.state = {
+      item: '',
+      users,
+    };
+  }
+  fill(ev) {
+    this.state.item = ev.target.value;
+  }
+  add() {
+    const usrs = this.state.users;
+    usrs.push({ id: users.length + 1, name: this.state.item });
+    this.state.users = usrs;
+    users = usrs;
+    this.state.item = '';
+  }
+}
+h1 -- Users
+ul
+  li for(user in state.users)
+    route-link href="/users/${user.id}" -- ${ user.name }
+label.uk-grid.uk-grid-collapse
+  div
+    input.uk-input on-input('fill') value=state.item name="item"
+  div
+    button.uk-button.uk-button-default type="button" on-click('add') -- Add
+
+if(input.renderBody)
+  include(input.renderBody) params=input.params
+

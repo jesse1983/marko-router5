@@ -1,0 +1,13 @@
+class {
+  onCreate() {
+    this.state = {
+      time: 0,
+    }
+  }
+  onMount() {
+    setInterval(() => {
+      this.state.time += 1;
+    }, 1000);
+  }
+}
+small style="float: right; color: #CCC" -- ${ state.time }s

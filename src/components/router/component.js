@@ -2,7 +2,7 @@ const { createRouter } = require('router5');
 const browserPlugin = require('router5/plugins/browser').default;
 const { cloneDeep } = require('lodash');
 
-class Route5Component {
+module.exports = class {
   onCreate(input) {
     this.routes = input.routes || [];
     this.options = Object.assign({
@@ -13,6 +13,7 @@ class Route5Component {
       toState: null,
       fromState: null,
       renderBody: null,
+      inputs: {}
     }
     this.notReady = true;
   }
@@ -23,7 +24,11 @@ class Route5Component {
       .usePlugin(browserPlugin({
         useHash: this.options.useHash || false,
       }))
-      .start();
+      .start(this.options.initialRoute || (window.location.pathname + window.location.search));
+    if (this.options.initialRoute !== this.options.defaultRoute) {
+      const goto = this.router.matchPath(this.options.initialRoute);
+      if (goto) this.router.navigate(goto.name);
+    }
     window.router = this.router;
   }
   beforeChangeRoute(toState, fromState, done) {
@@ -31,10 +36,17 @@ class Route5Component {
     if (family.length > 0 && family[0].component) {
       const renderBody = this.addChildren(family, toState.params, 0);
       // const renderChild = this.renderChild(toState);
+      const inputs = cloneDeep(this.input);
+      delete inputs.routes;
+      delete inputs.options;
+      delete inputs.renderBody;
+      delete inputs._target;
+      inputs.params = toState.params;
       this.setState({
         toState,
         fromState,
         renderBody,
+        inputs,
       });
       if (this.notReady) {
         this.forceUpdate();
@@ -69,12 +81,10 @@ class Route5Component {
     modifiedComponent._ = (input, out) => {
       if (family[index + 1]) {
         input.renderBody = this.addChildren(family, params, index + 1);
+        delete input._target;
       }
-      input.params = params;
       return fn(input, out);
     };
     return modifiedComponent;
   }
 }
-
-module.exports = Route5Component;

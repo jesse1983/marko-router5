@@ -1,4 +1,4 @@
-import Index from './examples/index.marko'
+import Index from './index.marko'
 
 import 'uikit/dist/css/uikit.min.css';
 const el = document.querySelector('#content');

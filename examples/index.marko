@@ -1,4 +1,5 @@
-import { Router } from '../../dist/index';
+import { Router } from 'comps';
+import Navigation from './commoms/navigation/index.marko';
 import Home from './components/home/index.marko';
 import Search from './components/search/index.marko';
 import Users from './components/users/index.marko';
@@ -10,7 +11,6 @@ import Colors from './components/settings/components/preferences/components/colo
 import Layout from './components/settings/components/preferences/components/layout/index.marko';
 
 import 'uikit/dist/css/uikit.min.css';
-
 $ const routes = [
   { name: 'home', path: '/', component: Home },
   { name: 'search', path: '/search', component: Search },
@@ -29,17 +29,21 @@ $ const routes = [
 $ const options = {
   defaultRoute: window.location.path,
 }
-macro navigation(rts, depth, parent)
-  ul.uk-nav.uk-nav-default style={ 'padding-left': depth * 20 }
-    li for(route in rts.filter(r => !r.hide))
-      $ const path = [parent, route.path.replace('/', '')].filter(a => !!a).join('/');
-      route-link href='/'+path active-class="router-link-exact-active uk-active" parent-element -- ${ route.name }
-      if(route.children)
-        navigation(route.children, (depth + 1), path)
-div.uk-grid
-  div.tm-sidebar-left
-    div style="padding: 40px"
-      h3 -- Navigation
-      navigation(routes, 0)
-  div style="padding: 40px"
-    router routes=routes options=options
+include(Navigation)
+  @body
+    macro navigation(rts, depth, parent)
+      ul.uk-nav.uk-nav-default style={ 'padding-left': depth * 20 }
+        li for(route in rts.filter(r => !r.hide))
+          $ const path = [parent, route.path.replace('/', '')].filter(a => !!a).join('/');
+          route-link href='/'+path active-class="router-link-exact-active uk-active" parent-element -- ${ route.name }
+          if(route.children)
+            navigation(route.children, (depth + 1), path)
+    div.uk-grid
+      div.tm-sidebar-left
+        div style="padding: 40px"
+          h3
+            -- Navigation
+          navigation(routes, 0)
+      div style="padding: 40px"
+        <!-- router routes=routes options=options mode=1 -->
+        include(Router) routes=routes options=options mode=1
