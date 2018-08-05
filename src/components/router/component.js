@@ -27,7 +27,7 @@ module.exports = class {
       .start(this.options.initialRoute || (window.location.pathname + window.location.search));
     if (this.options.initialRoute !== this.options.defaultRoute) {
       const goto = this.router.matchPath(this.options.initialRoute);
-      if (goto) this.router.navigate(goto.name);
+      if (goto) this.router.navigate(goto.name, goto.params);
     }
     window.router = this.router;
   }

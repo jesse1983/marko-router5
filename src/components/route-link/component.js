@@ -10,7 +10,8 @@ module.exports = class {
 
   navigate(ev) {
     ev.preventDefault();
-    navigate(this.input.href);
+    if (this.input.href) navigate(this.input.href);
+    else throw new Error('Missing attribute \'href\' on route-link component');
   }
 
   middleActive(toState, fromState, done) {

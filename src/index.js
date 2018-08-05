@@ -2,16 +2,14 @@ const Router = require('./components/router/index.marko');
 
 const router = () => process.browser ? window.router : null;
 
-const isActive = (p, state) => {
+const isActive = (path, state) => {
   const objRouter = router();
-  if (objRouter) {
-    const path = p.split('?')[0];
-    const current = state || objRouter.getState();
-    if (path === '/' && current.path !== '/') return false;
-    if (path === '/' && current.path === '/') return true;
-    return current.path.startsWith(path);
+  if (path && objRouter) {
+    const match = objRouter.matchPath(path.split('?')[0]);
+    const current = state && state.path ? objRouter.matchPath(state.path) : objRouter.getState();
+    if (match) return current.name.startsWith(match.name);
   }
-  return window.location.pathname === p;
+  return false;
 };
 
 const navigate = (path) => {
