@@ -3,7 +3,7 @@
 ## Installation
 
 Install marko-router5 package:
-```
+```sh
 npm i marko-router5 -D
 ```
 ## Usage
@@ -19,34 +19,68 @@ $ const routes = [
 ]
 
 <div>
-  <!-- Create navigation using router-link instead a tag -->
-  <route-link href="/">Home</route-link>
-  <route-link href="/products">Products</route-link>
-  <route-link href="/contact">Contact</route-link>
-
-  <!-- Add router -->
   <router routes=routes />
 </div>
 ```
-## Path syntax
 
-TODO
+## Navigate
 
-## Router options
+Add `route-link` tag instead `a` tag:
 
-TODO
+```html
+<route-link href="/" class="nav-item">Home</route-link>
+<route-link href="/products" class="nav-item">Products</route-link>
+<route-link href="/contact" class="nav-item">Contact</route-link>
+```
+
 
 ## Nested routes
 
-TODO
+```js
+$ const routes = [
+  { name: 'products', path: '/products', component: require('./products.marko'), children: [
+    { name: 'notebooks', path: '/notebooks', component: require('./notebooks.marko') },
+    { name: 'desktops', path: '/desktops', component: require('./desktops.marko') },
+    { name: 'others', path: '/others', component: require('./others.marko'), children: [
+      { name: 'cpu-processors', path: '/cpu-processors', component: require('./cpu-processors.marko') },
+      { name: 'memory-cards', path: '/memory-cards', component: require('./memory-cards.marko') },
+    ] },
+  ] },
+]
+```
+-----
 
 # Advanced
 
-## Middleware
+## Router options
 
-TODO
+```html
+<router routes=routes options={ defaultRoute: 'home' } />
+```
+All router options are on [Router Options](https://router5.js.org/guides/router-options) page.
 
-## Loading async data
+## Navigate options
 
-TODO
+### ActiveClass
+Automatically current link will have class `active`. You can change class name using attribute `active-class`:
+```html
+<route-link href="/" class="nav-item" active-class="current">Home</route-link>
+```
+Result is:
+```html
+<a href="/" class="nav-item current">Home</a>
+```
 
+### ParentClass
+If you need add `active` class on parent element instead `a` tag, add `parent-class`:
+```html
+<li>
+  <route-link href="/" class="nav-item" parent-class>Home</route-link>
+</li>
+```
+Result is:
+```html
+<li class="active">
+  <a href="/" class="nav-item">Home</a>
+</li>
+```

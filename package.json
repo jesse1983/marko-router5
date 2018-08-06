@@ -1,12 +1,12 @@
 {
   "name": "marko-router5",
-  "version": "1.0.2i",
+  "version": "1.0.3",
   "description": "Flexible and powerful routing for MarkoJS",
   "main": "./src/index.js",
   "scripts": {
     "build": "webpack --mode development --config webpack.build.js",
     "dev": "webpack-dev-server --watch",
-    "prepublish": "npm run build",
+    "docs": "docsify serve docs",
     "postbuild": "webpack --mode production --config webpack.min.js --optimize-minimize"
   },
   "author": {
@@ -25,6 +25,7 @@
     "babel-preset-stage-1": "^6.24.1",
     "comps": "file:./src",
     "css-loader": "^1.0.0",
+    "docsify-cli": "^4.2.1",
     "husky": "^1.0.0-rc.13",
     "style-loader": "^0.21.0",
     "uikit": "^3.0.0-rc.10",
