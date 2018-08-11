@@ -1,9 +1,15 @@
 class {
-  onCreate() {
-    this.state = { count: 0 };
-  }
-  clickme() {
-    this.setState({ count: this.state.count += 1 });
+  onCreate(input) {
+    this.state = {
+      todos: input.resolved.data || [],
+    }
+    this.state.todos = this.state.todos.filter((e, i) => i < 10)
   }
 }
 h1 -- Home example
+h2 -- Tasks
+ul
+  li for(todo in state.todos) style={ 'text-decoration': todo.completed ? 'line-through' : 'none' }
+    -- ${ todo.title }
+
+

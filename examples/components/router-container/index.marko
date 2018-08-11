@@ -1,0 +1,33 @@
+import { Router } from 'comps';
+import axios from 'axios';
+class {
+  onCreate() {
+    this.state = {
+      loading: false,
+    };
+  }
+  onMount() {
+    this.emit('ok', true);
+  }
+  transitionStart(states) {
+    this.state.loading = true;
+  }
+  transitionSuccess(states) {
+    this.state.loading = false;
+  }
+  beforeChange(state) {
+    if (state.name !== 'home') return Promise.resolve(true);
+    return new Promise((resolve, reject) => {
+      axios
+        .get('https://jsonplaceholder.typicode.com/todos')
+        .then(res => resolve(res))
+        .catch(e => reject(e));
+    })
+  }
+}
+
+<!-- include(Router) routes=input.routes options=options mode=1 before-change=component.beforeChangeRoute on-transition-start('transitionStart') on-change-end('changeEnd') -->
+div
+  if(state.loading)
+    div -- Loading...
+  include(Router) routes=input.routes initial-path on-transition-start('transitionStart') on-transition-success('transitionSuccess') await-promise=component.beforeChange

@@ -1,4 +1,4 @@
-import { Router } from 'comps';
+
 import Navigation from './commoms/navigation/index.marko';
 import Home from './components/home/index.marko';
 import Search from './components/search/index.marko';
@@ -10,7 +10,6 @@ import Preferences from './components/settings/components/preferences/index.mark
 import Colors from './components/settings/components/preferences/components/colors/index.marko';
 import Layout from './components/settings/components/preferences/components/layout/index.marko';
 
-import 'uikit/dist/css/uikit.min.css';
 $ const routes = [
   { name: 'home', path: '/', component: Home },
   { name: 'search', path: '/search', component: Search },
@@ -25,9 +24,16 @@ $ const routes = [
     ]},
   ]},
 ];
-
 $ const options = {
   defaultRoute: window.location.path,
+}
+class {
+  onCreate() {
+
+  }
+  ok(value){
+    console.log({ value });
+  }
 }
 include(Navigation)
   @body
@@ -46,4 +52,4 @@ include(Navigation)
           navigation(routes, 0)
       div style="padding: 40px"
         <!-- router routes=routes options=options mode=1 -->
-        include(Router) routes=routes options=options mode=1
+        router-container routes=routes

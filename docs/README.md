@@ -33,6 +33,15 @@ Add `route-link` tag instead `a` tag:
 <route-link href="/contact" class="nav-item">Contact</route-link>
 ```
 
+or
+
+Import `navigate` method:
+
+```js
+const { navigate } = require('marko-router5');
+
+navigate('/products');
+```
 
 ## Nested routes
 
@@ -48,20 +57,77 @@ $ const routes = [
   ] },
 ]
 ```
+
 -----
 
 # Advanced
 
-## Router options
+## Router
+
+### Attributes
+
+##### Options
+All router options are on [Router Options](https://router5.js.org/guides/router-options) page.
 
 ```html
 <router routes=routes options={ defaultRoute: 'home' } />
 ```
-All router options are on [Router Options](https://router5.js.org/guides/router-options) page.
 
-## Navigate options
+#### InitialPath
+A initial path can be a string (ex: `/dashboard`) or a bool (if true, initial path will be current window location).
 
-### ActiveClass
+```html
+<router routes=routes initial-path="/dashboard" />
+<!-- or -->
+<router routes=routes initial-path />
+```
+
+### Events
+
+#### transitionStart
+
+Before route change. **Value**: an object with next and previous route state `{ toState, fromState }`:
+
+```
+class {
+  transitionStartMethod(states) {
+    // use states.toState or states.fromState
+  }
+}
+<route routes=routes on-transition-start('transitionStartMethod') />
+```
+
+#### transitionSuccess
+
+After route change. **Value**: an object with next and previous route state `{ toState, fromState }`:
+
+```
+class {
+  transitionSuccessMethod(states) {
+    // use states.toState or states.fromState
+  }
+}
+<route routes=routes on-transition-success('transitionSuccessMethod') />
+```
+
+#### transitionError
+
+After route change and throw an error. **Value**: an object with next and previous route state and the error `{ toState, fromState, err }`:
+
+```
+class {
+  transitionErrorMethod(states) {
+    // use states.toState, states.fromState or states.err
+  }
+}
+<route routes=routes on-transition-error('transitionErrorMethod') />
+```
+
+## Route Link
+
+### Attributes
+
+#### ActiveClass
 Automatically current link will have class `active`. You can change class name using attribute `active-class`:
 ```html
 <route-link href="/" class="nav-item" active-class="current">Home</route-link>
@@ -71,7 +137,7 @@ Result is:
 <a href="/" class="nav-item current">Home</a>
 ```
 
-### ParentClass
+#### ParentClass
 If you need add `active` class on parent element instead `a` tag, add `parent-class`:
 ```html
 <li>
