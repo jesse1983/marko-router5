@@ -27,7 +27,7 @@ class {
 }
 
 <!-- include(Router) routes=input.routes options=options mode=1 before-change=component.beforeChangeRoute on-transition-start('transitionStart') on-change-end('changeEnd') -->
-div
+div.router-container
   if(state.loading)
     div -- Loading...
-  include(Router) routes=input.routes initial-path on-transition-start('transitionStart') on-transition-success('transitionSuccess') await-promise=component.beforeChange
+  include(Router) routes=input.routes initial-path no-wrapper on-transition-start('transitionStart') on-transition-success('transitionSuccess') await-promise=component.beforeChange

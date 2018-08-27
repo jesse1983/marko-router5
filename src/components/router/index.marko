@@ -1,5 +1,7 @@
-<div.router5-placeholder>
-  <if(state.renderBody)>
-    <include(state.renderBody) ...state.inputs />
-  </if>
-</div>
+$ console.log(input)
+if(input.noWrapper && state.renderBody)
+  include(state.renderBody) ...state.inputs
+else
+  div.router5-placeholder
+    if(state.renderBody)
+      include(state.renderBody) ...state.inputs

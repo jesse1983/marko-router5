@@ -66,7 +66,7 @@ $ const routes = [
 
 ### Attributes
 
-##### Options
+#### Options
 All router options are on [Router Options](https://router5.js.org/guides/router-options) page.
 
 ```html
@@ -80,6 +80,13 @@ A initial path can be a string (ex: `/dashboard`) or a bool (if true, initial pa
 <router routes=routes initial-path="/dashboard" />
 <!-- or -->
 <router routes=routes initial-path />
+```
+
+#### noWrapper
+Remove `<div class="router5-placeholder">` wrapper.
+
+```xml
+<router routes=routes no-wrapper />
 ```
 
 ### Events
