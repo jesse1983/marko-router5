@@ -52,7 +52,6 @@ module.exports = class {
   }
   beforeChangeRoute(toState, fromState, done) {
     const family = this.createFamilyComponents(toState);
-    console.log({ family });
     if (family.length > 0 && family[0].component) {
       const renderBody = this.addChildren(family, toState.params, 0);
       // const renderChild = this.renderChild(toState);
