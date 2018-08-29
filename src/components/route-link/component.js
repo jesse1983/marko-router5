@@ -16,7 +16,7 @@ module.exports = class {
 
   middleActive(toState, fromState, done) {
     this.pass = true;
-    const a = this.input.parentElement ? this.getEl('a').parentElement : this.getEl('a');
+    const a = this.input.parentClass ? this.getEl('a').parentElement : this.getEl('a');
     const className = this.input.activeClass || 'active';
     if (isActive(this.input.href, toState)) {
       className.split(' ').forEach(c => a.classList.add(c));
