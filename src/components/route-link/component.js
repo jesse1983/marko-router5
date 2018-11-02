@@ -9,9 +9,12 @@ module.exports = class {
   }
 
   navigate(ev) {
-    ev.preventDefault();
-    if (this.input.href) navigate(this.input.href);
-    else throw new Error('Missing attribute \'href\' on route-link component');
+    const comboKey = ev.metaKey || ev.altKey || ev.ctrlKey || ev.shiftKey
+    if (evt.button === 0 && !comboKey) {
+      ev.preventDefault();
+      if (this.input.href) navigate(this.input.href);
+      else throw new Error('Missing attribute \'href\' on route-link component');
+    }
   }
 
   middleActive(toState, fromState, done) {
