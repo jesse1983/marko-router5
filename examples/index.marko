@@ -35,21 +35,23 @@ class {
     console.log({ value });
   }
 }
-include(Navigation)
+${Navigation}
   @body
-    macro navigation(rts, depth, parent)
+    macro|{ rts, depth, parent }| name="navigation"
       ul.uk-nav.uk-nav-default style={ 'padding-left': depth * 20 }
-        li for(route in rts.filter(r => !r.hide))
-          $ const path = [parent, route.path.replace('/', '')].filter(a => !!a).join('/');
-          route-link href='/'+path active-class="router-link-exact-active uk-active" parent-element -- ${ route.name }
-          if(route.children)
-            navigation(route.children, (depth + 1), path)
+        if(Array.isArray(rts))
+          for|route| of=rts.filter(r => !r.hide)
+            li
+              $ const path = [parent, route.path.replace('/', '')].filter(a => !!a).join('/');
+              route-link href='/'+path active-class="router-link-exact-active uk-active" parent-element -- ${ route.name }
+              if(route.children)
+                navigation rts=route.children depth=(depth + 1) parent=path
     div.uk-grid
       div.tm-sidebar-left
         div style="padding: 40px"
           h3
             -- Navigation
-          navigation(routes, 0)
+          navigation rts=routes depth=0
       div style="padding: 40px"
         <!-- router routes=routes options=options mode=1 -->
         router-container routes=routes

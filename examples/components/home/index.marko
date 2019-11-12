@@ -9,7 +9,8 @@ class {
 h1 -- Home example
 h2 -- Tasks
 ul
-  li for(todo in state.todos) style={ 'text-decoration': todo.completed ? 'line-through' : 'none' }
-    -- ${ todo.title }
+  for|todo| of=state.todos
+    li style={ 'text-decoration': todo.completed ? 'line-through' : 'none' }
+      -- ${ todo.title }
 
 

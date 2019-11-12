@@ -1,5 +1,5 @@
 const { createRouter } = require('router5');
-const browserPlugin = require('router5/plugins/browser').default;
+const browserPlugin = require('router5-plugin-browser').default;
 const { cloneDeep } = require('lodash');
 const { EventEmitter } = require('events');
 
@@ -20,12 +20,11 @@ module.exports = class {
   }
   onMount() {
     this.router = createRouter(this.routes, this.options);
-    this.router
-      .usePlugin(this.pluginEvent())
-      .useMiddleware(router => (toState, fromState, done) => this.dataMiddlewareFactory(toState, fromState, done))
-      .useMiddleware(router => (toState, fromState, done) => this.beforeChangeRoute(toState, fromState, done))
-      .usePlugin(browserPlugin({ useHash: this.options.useHash || false }))
-      .start();
+    this.router.usePlugin(this.pluginEvent());
+    this.router.useMiddleware(router => (toState, fromState, done) => this.dataMiddlewareFactory(toState, fromState, done))
+    this.router.useMiddleware(router => (toState, fromState, done) => this.beforeChangeRoute(toState, fromState, done))
+    this.router.usePlugin(browserPlugin({ useHash: this.options.useHash || false }))
+    this.router.start();
     if (this.input.initialPath) {
       const isPath = typeof this.input.initialPath === 'string';
       const initialPath = isPath ? this.input.initialPath : window.location.pathname + window.location.search;

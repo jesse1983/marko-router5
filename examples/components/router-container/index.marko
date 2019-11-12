@@ -30,4 +30,4 @@ class {
 div.router-container
   if(state.loading)
     div -- Loading...
-  include(Router) routes=input.routes initial-path no-wrapper on-transition-start('transitionStart') on-transition-success('transitionSuccess') await-promise=component.beforeChange
+  ${Router} routes=input.routes initial-path no-wrapper on-transition-start('transitionStart') on-transition-success('transitionSuccess') await-promise=component.beforeChange

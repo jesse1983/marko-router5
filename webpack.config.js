@@ -11,7 +11,7 @@ module.exports = {
     rules: [{
       test: /.marko$/,
       use: [{
-        loader: 'marko-loader',
+        loader: '@marko/webpack/loader',
       }],
     },{
       test: /\.js$/,
@@ -30,6 +30,7 @@ module.exports = {
   },
   devtool: 'inline-source-map',
   devServer: {
+    port: 8081,
     contentBase: path.join(__dirname, 'examples'),
     publicPath: path.join('/dist'),
     disableHostCheck: true,

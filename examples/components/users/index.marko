@@ -20,8 +20,9 @@ class {
 }
 h1 -- Users
 ul
-  li for(user in state.users)
-    route-link href="/users/${user.id}" -- ${ user.name }
+  for|user| of=state.users
+    li
+      route-link href=`/users/${user.id}` -- ${ user.name }
 label.uk-grid.uk-grid-collapse
   div
     input.uk-input on-input('fill') value=state.item name="item"
@@ -29,5 +30,5 @@ label.uk-grid.uk-grid-collapse
     button.uk-button.uk-button-default type="button" on-click('add') -- Add
 
 if(input.renderBody)
-  include(input.renderBody) params=input.params
+  ${input.renderBody} params=input.params
 
