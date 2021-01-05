@@ -19,7 +19,7 @@
     "url": "https://github.com/jesse1983/marko-router5"
   },
   "devDependencies": {
-    "axios": "^0.18.0",
+    "axios": "^0.21.1",
     "babel-core": "^6.21.0",
     "babel-loader": "^7.1.5",
     "babel-preset-es2015": "^6.24.1",
